@@ -3,6 +3,9 @@
 # Version: v2.13, 2018-03-18
 ##########
 
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings\" -Name "Enabled" -Type DWord -Value 0
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings\" -Name "Enabled" -Type DWord -Value 0
+
 # Default preset
 $tweaks = @(
 	### Require administrator privileges ###
@@ -76,7 +79,7 @@ $tweaks = @(
 	# "EnableFileDeleteConfirm",    # "DisableFileDeleteConfirm",
 	"HideTaskbarSearchBox",         # "ShowTaskbarSearchBox",
 	"HideTaskView",                 # "ShowTaskView",
-	"ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
+	"ShowLargeTaskbarIcons",        # "ShowSmallTaskbarIcons",
 	"ShowTaskbarTitles",            # "HideTaskbarTitles",
 	"HideTaskbarPeopleIcon",        # "ShowTaskbarPeopleIcon",
 	"ShowTrayIcons",                # "HideTrayIcons",
@@ -117,7 +120,7 @@ $tweaks = @(
 	"UninstallOneDrive",            # "InstallOneDrive",
 	"UninstallMsftBloat",           # "InstallMsftBloat",
 	"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
-	# "UninstallWindowsStore",      # "InstallWindowsStore",
+	"UninstallWindowsStore",        # "InstallWindowsStore",
 	"DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
 	# "UninstallMediaPlayer",       # "InstallMediaPlayer",
@@ -2213,7 +2216,8 @@ Function UnpinTaskbarIcons {
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
 }
 
-
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings\" -Name "Enabled" -Type DWord -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings\" -Name "Enabled" -Type DWord -Value 1
 
 ##########
 # Auxiliary Functions
